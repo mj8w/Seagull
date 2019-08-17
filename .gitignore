@@ -2,6 +2,4 @@
 *.d
 Release/*
 .settings/*
-.project
-.cproject
 .ino.cpp
