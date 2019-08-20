@@ -1,40 +1,23 @@
 #include <Arduino.h>
 #include "accel.h"
 #include "lighting.h"
-#include "simplot.h"
-#include "filtering.h"
+#include "filter.h"
 
 Accel accel;
 Lighting lights;
-Simplot plot;
-Filters filter_x;
-Filters filter_y;
-Filters filter_z;
+Filter filter;
 
 void setup ()
 {
-    delay (300); // power-up safety delay
-    plot.setup (115200);
-    lights.setup (12);    	// brightness
-    accel.begin ();
+    delay(300); // power-up safety delay
+    lights.setup(40);    	// brightness
+    accel.begin();
+    Serial.begin(115200);
 
     // take our first reading to initialize filters internal history buffers
-    accel.read (); // update the 3-axis from accelerometer
-
-    filter_x.begin (12);		// samples from signed 12 bit source
-    filter_x.setup (accel.x, -1500, 1500, 100);
-
-    filter_y.begin (12);		// samples from signed 12 bit source
-    filter_y.setup (accel.y, -1500, 1500, 100);
-
-    filter_z.begin (12);		// samples from signed 12 bit source
-    filter_z.setup (accel.z, -1500, 1500, 100);
+    accel.read(); // update the 3-axis from accelerometer
+    filter.setup(accel.x);
 }
-
-// filtered values
-int fx = 0;
-int fy = 0;
-int fz = 0;
 
 void loop ()
 {
@@ -55,15 +38,20 @@ void loop ()
     lights.show ();
     accel.read (); // update the 3-axis from accelerometer
 
-    fx = filter_x.clip (accel.x);
-//	fy = filter_y.clip(accel.y);
-//	fz = filter_z.clip(accel.z);
+    Serial.print (accel.x);
+    Serial.print (", ");
+    Serial.print (accel.y);
+    Serial.print (", ");
+    Serial.println (accel.z);
 
-//	fx = filter_x.limit_slew(fx);
-//	fy = filter_y.limit_slew(fy);
-//	fz = filter_z.limit_slew(fz);
+    filtered
 
-    Serial.println (fx);
+    Serial.print (filter.leaky(accel.x));
+     Serial.print (", ");
+     Serial.print (filter.leaky(accel.y));
+     Serial.print (", ");
+     Serial.println (filter.leaky(accel.z));
+
 
     // short delay in between readings/
     delay (10);
