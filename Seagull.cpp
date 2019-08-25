@@ -43,6 +43,10 @@ void loop ()
     Serial.print((long) accel.y_q10 / Q10P21_ONE);
 	Serial.print(", ");
 
+	Serial.print((long) (accel.x_filtered - accel.x_integrated) / Q10P21_ONE);
+	Serial.print(", ");
+	Serial.print((long) (accel.y_filtered - accel.y_integrated) / Q10P21_ONE);
+	Serial.println(" ");
 
     // short delay in between readings/
     delay (1);
