@@ -16,6 +16,7 @@ void setup ()
 
 }
 
+int brightness = 40;
 
 unsigned long interval = 10; //mS
 unsigned long done_time;
@@ -56,6 +57,7 @@ void loop ()
 
 #define MAX_BRIGHTNESS 100
 
+    interval = 10;
     if(accel.x_filtered - accel.x_integrated > 30 * Q10P21_ONE)
     {
 		if(brightness < MAX_BRIGHTNESS)
@@ -63,6 +65,7 @@ void loop ()
 			brightness++;
 			lights.brightness(brightness);
 		    lights.show ();
+		    interval = 100;
 		}
     }
     else if(accel.x_filtered - accel.x_integrated < -30 * Q10P21_ONE)
@@ -72,6 +75,7 @@ void loop ()
 			brightness--;
 			lights.brightness(brightness);
 		    lights.show ();
+		    interval = 100;
 		}
     }
 
