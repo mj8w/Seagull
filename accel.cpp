@@ -17,11 +17,11 @@ void Accel::begin(void)
 
 	x_1_sec.setup(0.01, x_q10);
 	y_1_sec.setup(0.01, y_q10);
-	z_1_sec.setup(0.01, z_q10);
+//	z_1_sec.setup(10, z_q10);
 
 	x_100_sec.setup(0.0005, x_q10);
 	y_100_sec.setup(0.0005, y_q10);
-	z_100_sec.setup(0.0005, z_q10);
+//	z_100_sec.setup(500, z_q10);
 
 }
 
@@ -31,11 +31,11 @@ void Accel::read(void)
 		;
 	x = getX();
 	y = getY();
-	z = getZ();
+//	z = getZ();
 
 	x_q10 = Q10P21_ONE * x;
 	y_q10 = Q10P21_ONE * y;
-	z_q10 = Q10P21_ONE * z;
+//	z_q10 = Q10P21_ONE * z;
 
 
 }
@@ -44,7 +44,7 @@ void Accel::filter(void)
 {
 	x_filtered = x_1_sec.leaky(x_q10);
 	y_filtered = y_1_sec.leaky(y_q10);
-	z_filtered = z_1_sec.leaky(z_q10);
+//	z_filtered = z_1_sec.leaky(z_q10);
 
 }
 
@@ -53,6 +53,6 @@ void Accel::integrate(void)
 
 	x_integrated = x_100_sec.leaky(x_q10);
 	y_integrated = y_100_sec.leaky(y_q10);
-	z_integrated = z_100_sec.leaky(z_q10);
+//	z_integrated = z_100_sec.leaky(z_q10);
 }
 

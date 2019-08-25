@@ -14,9 +14,6 @@ void setup ()
     accel.begin();
     Serial.begin(115200);
 
-    // take our first reading to initialize filters internal history buffers
-    accel.read(); // update the 3-axis from accelerometer
-    filter.setup(accel.x);
 }
 
 void loop ()
@@ -38,19 +35,8 @@ void loop ()
     lights.show ();
     accel.read (); // update the 3-axis from accelerometer
 
-    Serial.print (accel.x);
-    Serial.print (", ");
-    Serial.print (accel.y);
-    Serial.print (", ");
-    Serial.println (accel.z);
 
-    filtered
 
-    Serial.print (filter.leaky(accel.x));
-     Serial.print (", ");
-     Serial.print (filter.leaky(accel.y));
-     Serial.print (", ");
-     Serial.println (filter.leaky(accel.z));
 
 
     // short delay in between readings/

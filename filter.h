@@ -3,8 +3,8 @@
 #ifndef __FILTER_H__
 #define __FILTER_H__
 
-typedef unsigned long Q10P21; // number with 10 bits point 21 bits
-#define Q10P21_ONE ((Q10P21) 1 < 21)	// "1.0" in Q10P21 format
+typedef long Q10P21; // number with 10 bits point 21 bits
+#define Q10P21_ONE ((Q10P21) 1 << 21)	// "1.0" in Q10P21 format
 
 class Filter
 {
