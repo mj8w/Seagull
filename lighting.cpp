@@ -12,7 +12,7 @@
 #define LEDL     3
 #define LEDR     4
 #define NUM_LEDS    30    // per strip
-#define CHIPSET     WS2811
+#define CHIPSET     WS2812
 #define COLOR_ORDER GRB
 CRGB leds[NUM_LEDS];
 
