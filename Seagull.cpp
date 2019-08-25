@@ -16,7 +16,7 @@ void setup ()
 
 }
 
-int brightness = 40;
+short brightness = 40;
 
 unsigned long interval = 10; //mS
 unsigned long done_time;
@@ -62,20 +62,18 @@ void loop ()
     {
 		if(brightness < MAX_BRIGHTNESS)
 		{
-			brightness++;
-			lights.brightness(brightness);
-		    interval = 100;
+			brightness+=4;
 			FastLED.show (brightness);
+		    interval = 30;
 		}
     }
     else if(accel.x_filtered - accel.x_integrated < -30 * Q10P21_ONE)
     {
 		if(brightness > 0)
 		{
-			brightness--;
-			lights.brightness(brightness);
-		    interval = 100;
+			brightness-=2;
 			FastLED.show(brightness);
+		    interval = 20;
 		}
     }
 
