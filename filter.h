@@ -9,10 +9,10 @@ typedef long Q10P21; // number with 10 bits point 21 bits
 class Filter
 {
 public:
-	void setup(float alpha, Q10P21 sample = Q10P21_ONE);
+	void setup(long invalpha, Q10P21 sample = Q10P21_ONE);
 	Q10P21 leaky(Q10P21 sample);
 private:
-	Q10P21 alpha;
+	long invalpha;	// the inverse of the alpha value, as an integer
 	Q10P21 accum;
 };
 

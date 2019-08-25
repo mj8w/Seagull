@@ -1,15 +1,21 @@
 // Name: filter.cpp
 
+#include <Arduino.h>
+
 #include "filter.h"
 
-void Filter::setup(float alpha_val, Q10P21 sample = Q10P21_ONE)
+void Filter::setup(long invalpha_val, Q10P21 sample = Q10P21_ONE)
 {
-	alpha = (Q10P21) (alpha_val * Q10P21_ONE);
+	invalpha = invalpha_val;
+
+	// 	Serial.print("alpha ");
+	//	Serial.println(alpha);
 	accum = sample;
 }
 
 /* Leaky integrator 'filter' */
 Q10P21 Filter::leaky(Q10P21 sample)
 {
-	accum += alpha * (sample-accum);
+	accum += (sample - accum) / invalpha;
+	return accum;
 }
