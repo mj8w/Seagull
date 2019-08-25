@@ -16,6 +16,11 @@ void setup ()
 
 }
 
+
+unsigned long interval = 10; //mS
+unsigned long done_time;
+unsigned long now;
+
 void loop ()
 {
     // continually call the accelerometer 'tap' to check for taps and double taps.
@@ -31,27 +36,44 @@ void loop ()
     //     time period chosen so that a slow change can be detected in single sample
     //     if the change threshold is reached, do something (brightness?)
 
-    // try to avoid floating point
-    lights.show ();
+	now = millis();
+	if (now - done_time < interval )
+		return;
+	done_time = now;
 
     accel.read (); // update the 3-axis from accelerometer
     accel.filter();
     accel.integrate();
 
-    Serial.print((long) accel.x_q10 / Q10P21_ONE);
+    Serial.print((long) brightness);
     Serial.print(", ");
-    Serial.print((long) accel.y_q10 / Q10P21_ONE);
-	Serial.print(", ");
 
 	Serial.print((long) (accel.x_filtered - accel.x_integrated) / Q10P21_ONE);
-	Serial.print(", ");
-	Serial.print((long) (accel.y_filtered - accel.y_integrated) / Q10P21_ONE);
 	Serial.println(" ");
 
     // short delay in between readings/
     delay (1);
 
+#define MAX_BRIGHTNESS 100
 
+    if(accel.x_filtered - accel.x_integrated > 30 * Q10P21_ONE)
+    {
+		if(brightness < MAX_BRIGHTNESS)
+		{
+			brightness++;
+			lights.brightness(brightness);
+		    lights.show ();
+		}
+    }
+    else if(accel.x_filtered - accel.x_integrated < -30 * Q10P21_ONE)
+    {
+		if(brightness > 0)
+		{
+			brightness--;
+			lights.brightness(brightness);
+		    lights.show ();
+		}
+    }
 
 
 }

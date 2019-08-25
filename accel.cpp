@@ -15,9 +15,9 @@ void Accel::begin(void)
 
 	read();
 
-	x_1_sec.setup(10, x_q10);
-	y_1_sec.setup(10, y_q10);
-//	z_1_sec.setup(10, z_q10);
+	x_1_sec.setup(20, x_q10);
+	y_1_sec.setup(20, y_q10);
+//	z_1_sec.setup(20, z_q10);
 
 	x_100_sec.setup(500, x_q10);
 	y_100_sec.setup(500, y_q10);
