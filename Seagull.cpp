@@ -10,7 +10,7 @@ Filter filter;
 void setup ()
 {
     delay(300); // power-up safety delay
-    lights.setup(40);    	// brightness
+    lights.setup();    	// brightness
     accel.begin();
     Serial.begin(115200);
 
@@ -55,7 +55,7 @@ void loop ()
     // short delay in between readings/
     delay (1);
 
-#define MAX_BRIGHTNESS 100
+#define MAX_BRIGHTNESS 250
 
     interval = 10;
     if(accel.x_filtered - accel.x_integrated > 30 * Q10P21_ONE)
@@ -64,8 +64,8 @@ void loop ()
 		{
 			brightness++;
 			lights.brightness(brightness);
-		    lights.show ();
 		    interval = 100;
+			FastLED.show (brightness);
 		}
     }
     else if(accel.x_filtered - accel.x_integrated < -30 * Q10P21_ONE)
@@ -74,8 +74,8 @@ void loop ()
 		{
 			brightness--;
 			lights.brightness(brightness);
-		    lights.show ();
 		    interval = 100;
+			FastLED.show(brightness);
 		}
     }
 

@@ -13,7 +13,7 @@
 class Lighting
 {
 public:
-	void setup(int brightness);
+	void setup(void);
 	void show();
 	void brightness(int percent);
 };
