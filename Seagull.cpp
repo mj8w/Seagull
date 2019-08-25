@@ -33,13 +33,21 @@ void loop ()
 
     // try to avoid floating point
     lights.show ();
+
     accel.read (); // update the 3-axis from accelerometer
+    accel.filter();
+    accel.integrate();
 
-
-
+    Serial.print((long) accel.x_q10 / Q10P21_ONE);
+    Serial.print(", ");
+    Serial.print((long) accel.y_q10 / Q10P21_ONE);
+	Serial.print(", ");
 
 
     // short delay in between readings/
-    delay (10);
+    delay (1);
+
+
+
 
 }

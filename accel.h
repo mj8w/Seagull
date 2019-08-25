@@ -33,11 +33,12 @@ public:
 	Q10P21 y_integrated;
 	Q10P21 z_integrated;
 
-private:
+
 	Q10P21 x_q10;			// raw values converted to Q10P21
 	Q10P21 y_q10;
 	Q10P21 z_q10;
 
+private:
 	Filter x_1_sec;
 	Filter y_1_sec;
 	Filter z_1_sec;
