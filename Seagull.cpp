@@ -13,7 +13,6 @@ void setup ()
     lights.setup();    	// brightness
     accel.begin();
     Serial.begin(115200);
-
 }
 
 short brightness = 40;
@@ -63,7 +62,7 @@ void loop ()
 		if(brightness < MAX_BRIGHTNESS)
 		{
 			brightness+=4;
-			FastLED.show (brightness);
+			FastLED.show(brightness);
 		    interval = 30;
 		}
     }
@@ -76,6 +75,4 @@ void loop ()
 		    interval = 20;
 		}
     }
-
-
 }
