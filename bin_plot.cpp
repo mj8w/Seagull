@@ -5,6 +5,7 @@
  *      Author: mike
  */
 #include "bin_plot.h"
+#include <Arduino.h>
 
 void BinPlot::setup(unsigned long int baud)
 {
@@ -15,7 +16,7 @@ void BinPlot::send(uint8_t header, uint8_t *data, size_t sz)
 // Send binary data to the serial port for use in plotting using Datascope.
 {
 	static uint8_t buff[MAX_DATA_SZ];
-	int* pb = buff;
+	uint8_t* pb = buff;
 	*pb++ = 0xCDAB;            //SimPlot packet header. Indicates start of data packet
 	*pb++ = sz * sizeof(int);  //Size of data in bytes. Does not include the header and size fields
 

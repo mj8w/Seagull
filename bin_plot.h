@@ -5,6 +5,7 @@
  *      Author: mike
  */
 #include <stdint.h>
+#include <stddef.h>
 
 #ifndef __BINPLOT_H__
 #define __BINPLOT_H__
@@ -15,7 +16,7 @@ class BinPlot
 {
 public:
 	void setup(unsigned long int baud);
-	void send(uint8_t header, int *data, size_t sz);
+	void send(uint8_t header, uint8_t *data, size_t sz);
 };
 
 #endif // __BINPLOT_H__
