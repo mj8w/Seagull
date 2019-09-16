@@ -1,20 +1,22 @@
 /*
- * lighting.h
+ * bin_plot.h
  *
  *  Created on: Oct 23, 2016
  *      Author: mike
  */
-#include <FastLED.h>
+#include <stdint.h>
 
-#ifndef __SIMPLOT_H__
-#define __SIMPLOT_H__
+#ifndef __BINPLOT_H__
+#define __BINPLOT_H__
 
-class Simplot
+#define MAX_DATA_SZ 20 // The maximum number of bytes of data we support
+
+class BinPlot
 {
 public:
 	void setup(unsigned long int baud);
-	void plot(int *data, size_t sz);
+	void send(uint8_t header, int *data, size_t sz);
 };
 
-#endif // __SIMPLOT_H__
+#endif // __BINPLOT_H__
 

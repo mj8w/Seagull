@@ -6,16 +6,15 @@
  */
 #include "bin_plot.h"
 
-void Simplot::setup(unsigned long int baud)
+void BinPlot::setup(unsigned long int baud)
 {
 	Serial.begin(baud);
 }
 
-void Simplot::plot(int *data, size_t sz)
-// Plot using the simplot mechanism, to the serial port in such a way that Arduino Sloeber interface
-// can produce an easy to use data plotting feature.
+void BinPlot::send(uint8_t header, uint8_t *data, size_t sz)
+// Send binary data to the serial port for use in plotting using Datascope.
 {
-	static int buff[20];
+	static uint8_t buff[MAX_DATA_SZ];
 	int* pb = buff;
 	*pb++ = 0xCDAB;            //SimPlot packet header. Indicates start of data packet
 	*pb++ = sz * sizeof(int);  //Size of data in bytes. Does not include the header and size fields
