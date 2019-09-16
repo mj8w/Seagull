@@ -23,13 +23,12 @@ unsigned long now;
 
 void loop ()
 {
-    // continually call the accelerometer 'tap' to check for taps and double taps.
+    // TODO: continually call the accelerometer 'tap' to check for taps and double taps.
 
     // tipping wings should lead to small changes in one of the axes G forces
     // as the axis becomes tipped toward the ground.
-    // look for the change in direction, so need to check at a rate that
-    // allows for a significant change rate. But also ignore jumps in values from
-    //   being bumped.
+    // look for the change in direction,
+
 
     // - reject changes bigger than "allowable" (but change up to 'allowable' amount)
     // - average the results over a long period of time
@@ -41,10 +40,18 @@ void loop ()
 		return;
 	done_time = now;
 
+	// read the accelerometer
     accel.read (); // update the 3-axis from accelerometer
+
+    // produce a signal that is integrated from the accelerometer output, in the 1/2 second
+    //   rolloff range - this is used to measure changes in the Seagull attitude, side-to-side
     accel.filter();
+
+    // produce a signal that is integrated from the accelerometer output, in the 5 second
+    //   rolloff range - this produces a baseline of the attitude where the seagull sits at rest
     accel.integrate();
 
+    // output the readings to the serial port for external analysis
     Serial.print((long) brightness);
     Serial.print(", ");
 
@@ -54,9 +61,13 @@ void loop ()
     // short delay in between readings/
     delay (1);
 
-#define MAX_BRIGHTNESS 250
+    // check the difference between the changes of attitude and the baseline attitude
+    //    and if they are different enough, then the wings are considered tipped.
+    // Over time, the brightness is adjusted based on the tipping.
 
+	#define MAX_BRIGHTNESS 250
     interval = 10;
+
     if(accel.x_filtered - accel.x_integrated > 30 * Q10P21_ONE)
     {
 		if(brightness < MAX_BRIGHTNESS)
