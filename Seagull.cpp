@@ -70,9 +70,9 @@ void loop ()
     {
 		if(brightness > 0)
 		{
-			brightness-=2;
+			brightness-=4;
 			FastLED.show(brightness);
-		    interval = 20;
+		    interval = 30;
 		}
     }
 }
