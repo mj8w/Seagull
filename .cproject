@@ -3,9 +3,9 @@
     	
     <storageModule moduleId="org.eclipse.cdt.core.settings">
         		
-        <cconfiguration id="org.eclipse.cdt.core.default.config.33052412">
+        <cconfiguration id="org.eclipse.cdt.core.default.config.579715102">
             			
-            <storageModule buildSystemId="org.eclipse.cdt.core.defaultConfigDataProvider" id="org.eclipse.cdt.core.default.config.33052412" moduleId="org.eclipse.cdt.core.settings" name="Configuration">
+            <storageModule buildSystemId="org.eclipse.cdt.core.defaultConfigDataProvider" id="org.eclipse.cdt.core.default.config.579715102" moduleId="org.eclipse.cdt.core.settings" name="Configuration">
                 				
                 <externalSettings/>
                 				
@@ -26,7 +26,5 @@
     </storageModule>
     	
     <storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
-    	
-    <storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
     
 </cproject>
