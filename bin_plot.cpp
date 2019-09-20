@@ -4,7 +4,7 @@
  *  Created on: Oct 23, 2016
  *      Author: mike
  */
-#include "simplot.h"
+#include "bin_plot.h"
 
 void Simplot::setup(unsigned long int baud)
 {
